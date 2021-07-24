@@ -7,10 +7,14 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { Header, Content } from "./components";
 import GlobalStyles from "./styles/global";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <Provider store={store}>
+      <ToastContainer />
       <PersistGate loading={null} persistor={persistor} />
       <GlobalStyles />
       <BrowserRouter>

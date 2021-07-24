@@ -1,3 +1,5 @@
+import { removeDotsAndDash } from "../../utils/removeDotsAndDash";
+
 export function typedAction<T extends string>(type: T): { type: T };
 export function typedAction<T extends string, P extends any>(
   type: T,
@@ -63,17 +65,55 @@ export const setEmployee = (employee: Employee) => {
   return typedAction("employee/SET_EMPLOYEE", employee);
 };
 
-type EmployeeAction = ReturnType<typeof setEmployee>;
+export const updateEmployee = (employee: Employee) => {
+  return typedAction("employee/UPDATE_EMPLOYEE", employee);
+};
+
+export const removeEmployee = (cpf: string) => {
+  return typedAction("employee/REMOVE_EMPLOYEE", cpf);
+};
+
+type EmployeeAction = ReturnType<
+  typeof setEmployee | typeof updateEmployee | typeof removeEmployee
+>;
 
 export function employeeReducer(
   state = initialState,
   action: EmployeeAction
 ): EmployeesState {
   switch (action.type) {
-    case "employee/SET_EMPLOYEE":
+    case "employee/SET_EMPLOYEE": {
+      const newEmployeesArray = [...state.employees, action.payload];
+      return {
+        ...state,
+        employees: newEmployeesArray,
+      };
+    }
+    case "employee/UPDATE_EMPLOYEE": {
+      const employeeIndex = state.employees.findIndex(
+        (item) =>
+          removeDotsAndDash(item.cpf) === removeDotsAndDash(action.payload.cpf)
+      );
+
+      const employees = state.employees;
+      employees[employeeIndex] = action.payload;
+
+      return {
+        ...state,
+        employees,
+      };
+    }
+    case "employee/REMOVE_EMPLOYEE": {
+      const employeeIndex = state.employees.findIndex(
+        (item) =>
+          removeDotsAndDash(item.cpf) === removeDotsAndDash(action.payload)
+      );
+      state.employees.splice(employeeIndex, 1);
+
       return {
         ...state,
       };
+    }
     default:
       return state;
   }

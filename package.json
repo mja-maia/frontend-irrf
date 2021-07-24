@@ -15,6 +15,7 @@
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-toastify": "^7.0.4",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
@@ -25,7 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -51,6 +52,13 @@
     "@types/react-router-dom": "^5.1.8",
     "@types/redux": "^3.6.0",
     "@types/redux-persist": "^4.3.1",
-    "@types/styled-components": "^5.1.11"
+    "@types/styled-components": "^5.1.11",
+    "jest": "26.6.0",
+    "jest-environment-jsdom-sixteen": "^2.0.0"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@ui5|lit-html)).*\\.js$"
+    ]
   }
 }

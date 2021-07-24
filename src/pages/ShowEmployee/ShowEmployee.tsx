@@ -1,11 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Container } from "./styles";
 import { RootState } from "../../store";
+import { removeEmployee } from "../../store/ducks/employees";
 import { calcIRPF } from "../../services/calcIRPF";
+import { useHistory } from "react-router-dom";
+import { removeDotsAndDash } from "../../utils/removeDotsAndDash";
 
 const ShowEmployee: React.FC = () => {
   const { employees } = useSelector((state: RootState) => state.employees);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   return (
     <Container>
@@ -36,6 +41,7 @@ const ShowEmployee: React.FC = () => {
             <th>Desconto</th>
             <th>Dependentes</th>
             <th>Desconto IRPF</th>
+            <th>Ações</th>
           </tr>
         </thead>
 
@@ -48,6 +54,22 @@ const ShowEmployee: React.FC = () => {
               <td>{employee.desconto}</td>
               <td>{employee.dependentes}</td>
               <td>{calcIRPF(employee)}</td>
+              <td>
+                <button
+                  onClick={() =>
+                    history.push(`/form/${removeDotsAndDash(employee.cpf)}`)
+                  }
+                  className="btn btn-primary"
+                >
+                  Editar
+                </button>
+                <button
+                  onClick={() => dispatch(removeEmployee(employee.cpf))}
+                  className="btn btn-danger"
+                >
+                  Remover
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

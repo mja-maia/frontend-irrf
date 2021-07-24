@@ -31,6 +31,10 @@ const Container = styled.div`
       padding: 8px 8px;
     }
   }
+
+  button {
+    margin-left: 8px;
+  }
 `;
 
 export { Container };

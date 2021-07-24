@@ -15,7 +15,9 @@ export const Header: React.FC = () => {
 
   return (
     <Container>
-      <span onClick={() => handleMenuClick("/add")}>Registrar funcionário</span>
+      <span onClick={() => handleMenuClick("/form")}>
+        Registrar funcionário
+      </span>
       <span onClick={() => handleMenuClick("/")}>
         Tabelas e cálculos do IRRF
       </span>

@@ -7,7 +7,7 @@ import ShowEmployee from "./../pages/ShowEmployee/ShowEmployee";
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={ShowEmployee} />
-    <Route exact path="/add" component={Form} />
+    <Route path="/form/:cpf?" component={Form} />
   </Switch>
 );
 
