@@ -28,25 +28,29 @@ const ShowEmployee: React.FC = () => {
       <h2>Seus funcionários</h2>
 
       <table>
-        <tr>
-          <th>Nome</th>
-          <th>CPF</th>
-          <th>Salário</th>
-          <th>Desconto</th>
-          <th>Dependentes</th>
-          <th>Desconto IRPF</th>
-        </tr>
-
-        {employees.map((employee) => (
+        <thead>
           <tr>
-            <td>{employee.nome}</td>
-            <td>{employee.cpf}</td>
-            <td>{employee.salario}</td>
-            <td>{employee.desconto}</td>
-            <td>{employee.dependentes}</td>
-            <td>{calcIRPF(employee)}</td>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Salário</th>
+            <th>Desconto</th>
+            <th>Dependentes</th>
+            <th>Desconto IRPF</th>
           </tr>
-        ))}
+        </thead>
+
+        <tbody>
+          {employees.map((employee) => (
+            <tr key={employee.cpf}>
+              <td>{employee.nome}</td>
+              <td>{employee.cpf}</td>
+              <td>{employee.salario}</td>
+              <td>{employee.desconto}</td>
+              <td>{employee.dependentes}</td>
+              <td>{calcIRPF(employee)}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </Container>
   );

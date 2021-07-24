@@ -13,14 +13,14 @@ function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor} />
       <GlobalStyles />
-      <Header />
-      <div className="content">
-        <Content>
-          <BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        <div className="content">
+          <Content>
             <Routes />
-          </BrowserRouter>
-        </Content>
-      </div>
+          </Content>
+        </div>
+      </BrowserRouter>
     </Provider>
   );
 }

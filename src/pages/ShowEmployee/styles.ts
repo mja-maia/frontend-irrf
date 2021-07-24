@@ -16,15 +16,15 @@ const Container = styled.div`
     width: 100%;
     border-spacing: 0;
     border-collapse: collapse;
-    th {
-      padding: 8px 0;
-      border: 1px solid #e7eaea;
+    thead {
+      background-color: #f9fafb;
+      th {
+        border: 1px solid #e7eaea;
+        padding: 8px;
+      }
     }
     tr {
       padding: 16px 0;
-    }
-    tr:nth-child(1) {
-      background-color: #f9fafb;
     }
     td {
       border: 1px solid #e7eaea;
